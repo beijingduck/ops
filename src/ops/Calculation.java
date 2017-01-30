@@ -9,19 +9,21 @@ public class Calculation {
 	double a1,an1,ang1,angle1;
 	int alpha1d,sd,size;
 	double[] disdir= new double[2];
-	double [] XY = new double[2];
+	
 	public Parameter para;
 	public Calculation(Parameter para){
 		this.para = para;
 	}
 	public double[] dirdisToXY(double[] disdir) {
 		angle = disdir[0] + para.variation;
+		double [] XY = new double[2];	
 		XY[0] = Math.sin(Math.toRadians(angle)) * disdir[1] / para.scale;
 		XY[1] = Math.cos(Math.toRadians(angle)) * disdir[1] / para.scale;
 		return XY;
 	}
 	public Point2D dirdisToXY(double dis,double dir) {
 		angle = dir + para.variation;
+		double [] XY = new double[2];
 		XY[0] = Math.sin(Math.toRadians(angle)) * dis / para.scale;
 		XY[1] = Math.cos(Math.toRadians(angle)) * dis / para.scale;
 		Point2D Pos = new Point2D(XY[0],XY[1]);

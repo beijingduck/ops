@@ -4,9 +4,11 @@ import java.io.File;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.MeshView;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import object.Rwy;
 import javafx.stage.FileChooser.ExtensionFilter;
 import ops.Data3D;
 import ops.Parameter;
@@ -17,12 +19,10 @@ public class Open {
 	public Pane pane;
 	public Button btn;
 	public SurfaceMaker sm;
-	public Data3D d3d;
 	public Open(Parameter para,Pane pane){
 		this.para = para;
 		this.pane = pane;		
 		sm = new SurfaceMaker(para);
-		d3d = new Data3D(para);
 	}
 	public void setOpen(){
 		setRoadButton();
@@ -34,6 +34,7 @@ public class Open {
 		pane.getChildren().add(btn);
 		btn.setOnAction((e) -> {
 			openFile();
+			
 		});
 	}
 	public void openFile(){
@@ -54,7 +55,10 @@ public class Open {
 		fc.getExtensionFilters()
 				.addAll(new ExtensionFilter[] { new ExtensionFilter("Text Files", new String[] { "*.csv" }) });
 		File importFile = fc.showOpenDialog((Window) null);
-		MeshView meshView = sm.readCSVfile(importFile.getAbsolutePath());
-        para.root.getChildren().addAll(meshView);
+		if(importFile!=null){
+			MeshView meshView = new MeshView();
+			meshView = sm.readCSVfile(importFile.getAbsolutePath());
+	        para.root.getChildren().addAll(meshView);	
+		}
 	}
 }

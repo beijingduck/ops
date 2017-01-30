@@ -14,17 +14,17 @@ public class Mouse {
 	}
 	public void setMouse(){
 		para.scene.setOnScroll((sc) -> {
-			camera.setTranslateY(camera.getTranslateY() - sc.getDeltaY());
+			camera.setTranslateY(camera.getTranslateY() - sc.getDeltaY()*50);
 		});
 		para.scene.setOnKeyPressed((e) -> {
 			if(e.getCode().equals(KeyCode.RIGHT)){
-				camera.setTranslateX(camera.getTranslateX() +10);
+				camera.setTranslateX(camera.getTranslateX() +1000);
 			}else if(e.getCode().equals(KeyCode.LEFT)){
-				camera.setTranslateX(camera.getTranslateX() -10);
+				camera.setTranslateX(camera.getTranslateX() -1000);
 			}else if(e.getCode().equals(KeyCode.UP)){
-				camera.setTranslateZ(camera.getTranslateZ() +10);
+				camera.setTranslateZ(camera.getTranslateZ() +1000);
 			}else if(e.getCode().equals(KeyCode.DOWN)){
-				camera.setTranslateZ(camera.getTranslateZ() -10);
+				camera.setTranslateZ(camera.getTranslateZ() -1000);
 			}
 		});
 	}

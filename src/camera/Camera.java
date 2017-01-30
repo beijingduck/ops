@@ -14,12 +14,9 @@ public class Camera {
 	}
 	public void setCamera(){
 		camera = new PerspectiveCamera(true);
-		
-		//Point2D twr = coordinate(1575.896D, 371358.25D);
-		//Point2D Pos = para.cal.dirdisToXY(8287.130,3594557.30);
 		camera.setTranslateX(para.centerX);
 		camera.setTranslateZ(para.centerY);
-		camera.setTranslateY(-para.centerZ);
+		camera.setTranslateY((-1.0)*para.centerZ);
 		camera.setNearClip(1.0D);
 		camera.setFarClip(50000.0D);
 		camera.setFieldOfView(45.0D);

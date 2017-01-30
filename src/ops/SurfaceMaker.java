@@ -16,30 +16,26 @@ import javafx.scene.shape.MeshView;
 import javafx.scene.shape.TriangleMesh;
 
 public class SurfaceMaker {
-	public Parameter para;
-	public int dimensionX,dimensionZ;
-	MeshView meshView = new MeshView();
-    TriangleMesh mesh = new TriangleMesh();
-    ObservableFloatArray points = FXCollections.observableFloatArray();
-    ObservableIntegerArray faces = FXCollections.observableIntegerArray();
-    Integer[][] vertexID;
-    int i = 0,idX=0,idZ=0;
+	public Parameter para;	    
     float tmpX,tmpY,tmpZ;
     String[] f;
 	public SurfaceMaker(Parameter para){
 		this.para = para;
 	}
 	public MeshView readCSVfile(String csvFile){
-		dimensionX=para.dimensionX;
-		dimensionZ=para.dimensionZ;
 		int ctr = 0;
-		vertexID = new Integer[dimensionX][dimensionZ];
+		int idX = 0;
+		int idZ = 0;
+		MeshView meshView = new MeshView();
+		Integer[][] vertexID = new Integer[para.dimensionX][para.dimensionZ];
 		try {
 			String ex = ",";
 			BufferedReader br;
 			String line;
 			FileReader fr = new FileReader(csvFile);
 			br = new BufferedReader(fr);
+			ObservableFloatArray points = FXCollections.observableFloatArray();
+			ObservableIntegerArray faces = FXCollections.observableIntegerArray();
 			while ((line = br.readLine()) != null) {
 				f = line.split(ex, -1);
 				tmpX = Float.parseFloat(f[0]);
@@ -70,8 +66,9 @@ public class SurfaceMaker {
 						faces.addAll(0);
 					}
 					idX ++;
-					if(idX==dimensionX){idX=0;idZ++;}
-			}	
+					if(idX==para.dimensionX){idX=0;idZ++;}
+			}
+			TriangleMesh mesh = new TriangleMesh();
 			mesh.getPoints().addAll(points);
 	        mesh.getTexCoords().addAll(0,0);
 	        mesh.getFaces().addAll(faces);
@@ -82,6 +79,7 @@ public class SurfaceMaker {
 	        material.setSpecularColor( Color.GREEN );
 	         
 	        // メッシュを登録
+	        
 	        meshView.setDrawMode( DrawMode.LINE );
 	        meshView.setMesh( mesh );
 	        meshView.setMaterial( material );
