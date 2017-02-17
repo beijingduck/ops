@@ -15,7 +15,7 @@ import ops.XYZ;
 
 public class Road {
 	public Parameter para;
-	public Button btn;
+	public Button btn,btn2D;
 	public Pane pane;
 	public FileRoader fr;
 	public FileMaker fm;
@@ -33,8 +33,7 @@ public class Road {
 		btn = new Button("ROAD");
 		pane.getChildren().add(btn);
 		btn.setOnAction((e) -> {
-			roadFile();
-			
+			roadFile();			
 		});
 	}
 	public void roadFile(){

@@ -9,6 +9,7 @@ public class Control {
 	public Parameter para;
 	public Road road;
 	public Open open;
+	public OASBIS bis;
 	public Stage stage;
 	public Scene scene;
 	public Pane pane;
@@ -21,6 +22,9 @@ public class Control {
 		
 		open = new Open(para,pane);
 		open.setOpen();
+		
+		bis = new OASBIS(para,pane);
+		bis.setOASBIS();
 				
 		scene = new Scene(pane,200,100);
 		stage = new Stage();

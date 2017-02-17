@@ -1,6 +1,7 @@
 package control;
 
 import java.io.File;
+import java.util.List;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -10,14 +11,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import object.Rwy;
 import javafx.stage.FileChooser.ExtensionFilter;
-import ops.Data3D;
 import ops.Parameter;
 import ops.SurfaceMaker;
 
 public class Open {
 	public Parameter para;
 	public Pane pane;
-	public Button btn;
+	public Button btn,btn2;
 	public SurfaceMaker sm;
 	public Open(Parameter para,Pane pane){
 		this.para = para;
@@ -30,11 +30,21 @@ public class Open {
 	}
 	public void setRoadButton(){
 		btn = new Button("OPEN");
-		btn.setLayoutX(100);
+		btn.setLayoutX(50);
 		pane.getChildren().add(btn);
 		btn.setOnAction((e) -> {
 			openFile();
 			
+		});
+		btn2 = new Button("3D");
+		pane.getChildren().add(btn2);
+		btn2.setLayoutY(50);
+		btn2.setOnAction((e) -> {
+			if(para.obj.trn.terrain.isVisible()){
+				para.obj.trn.terrain.setVisible(false);
+			}else{
+				para.obj.trn.terrain.setVisible(true);	
+			}					
 		});
 	}
 	public void openFile(){
@@ -54,11 +64,12 @@ public class Open {
 		}
 		fc.getExtensionFilters()
 				.addAll(new ExtensionFilter[] { new ExtensionFilter("Text Files", new String[] { "*.csv" }) });
-		File importFile = fc.showOpenDialog((Window) null);
-		if(importFile!=null){
-			MeshView meshView = new MeshView();
-			meshView = sm.readCSVfile(importFile.getAbsolutePath());
-	        para.root.getChildren().addAll(meshView);	
-		}
+		 List<File> importFiles = fc.showOpenMultipleDialog(null);
+         if (importFiles != null) {
+
+             for (File imf : importFiles) {
+     			sm.readCSVfile(imf.getAbsolutePath());
+             }
+         }
 	}
 }

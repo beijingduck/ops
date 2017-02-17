@@ -22,15 +22,16 @@ public class Rwy {
 	}
 	public void setRwy(){
 		
-		xy1 = para.cal.dirdisToXY(para.cal.coordToDirdis(351511.50, 1360945.01));
-		xy2 = para.cal.dirdisToXY(para.cal.coordToDirdis(351615.86, 1361114.10));
+		xy1 = para.cal.coordToXY(351511.50, 1360945.01);
+		xy2 = para.cal.coordToXY(351615.86, 1361114.10);
+		
 		a = Math.atan((xy1[1]-xy2[1])/(xy1[0]-xy2[0]));
 		
 		d = 40;
 		tm = new TriangleMesh();
 		float[] points = {
 				(float)(xy1[0]-d*Math.sin(a)),-97,(float)(xy1[1]+d*Math.cos(a)),
-				(float)(xy1[0]+d*Math.sin(a)),-97,(float)(xy1[1]-d+Math.cos(a)),
+				(float)(xy1[0]+d*Math.sin(a)),-97,(float)(xy1[1]-d*Math.cos(a)),
 				(float)(xy2[0]+d*Math.sin(a)),-100,(float)(xy2[1]-d*Math.cos(a)),
 				(float)(xy2[0]-d*Math.sin(a)),-100,(float)(xy2[1]+d*Math.cos(a))				
 		};
@@ -42,13 +43,15 @@ public class Rwy {
         // マテリアルを作成
         PhongMaterial   material    = new PhongMaterial();
         material.setDiffuseColor( Color.GREY);
-        material.setSpecularColor( Color.GREY );
+        //material.setSpecularColor( Color.GREY );
          
         // メッシュを登録
         meshView.setDrawMode( DrawMode.FILL);
         meshView.setMesh(tm);
         meshView.setMaterial( material );
         meshView.setCullFace(CullFace.BACK);
+        
+        
         
         para.root.getChildren().addAll(meshView);
 	}

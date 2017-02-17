@@ -11,6 +11,7 @@ public class DisAndDir {
 	public void XandYandZofCell(double lat, double lng,String[] H){
 		latlng[0] = lat;
 		latlng[1] = lng;
+		para.cntl.road.data.clear();
 		for(int n=0;n<para.dimensionZ;n++){		//750&1125
 			for(int i=0;i<para.dimensionX;i++){				
 				xy = XandYofCell(i,n);
@@ -23,6 +24,6 @@ public class DisAndDir {
 		//center of box
 		double lat = latlng[0] - n*1.0/9000.0;
 		double lng = latlng[1] + i*1.0/9000.0;
-		return para.cal.dirdisToXY(para.cal.coordToDirdis(lat, lng));
+		return para.cal.coordToXY(lat, lng);
 	}
 }

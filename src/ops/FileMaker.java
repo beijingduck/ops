@@ -21,7 +21,6 @@ public class FileMaker {
 				ex.write(String.valueOf(one.z));				
 				ex.newLine();
 			}
-
 			ex.close();
 		} catch (IOException arg4) {
 			System.out.println(arg4);

@@ -1,5 +1,6 @@
 package object;
 
+import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.CullFace;
@@ -10,18 +11,12 @@ import ops.Parameter;
 
 public class Terrain {
 	public Parameter para;
-	public MeshView meshView = new MeshView();
+	public Group terrain = new Group();
 	public Terrain(Parameter para){
 		this.para = para;
+		setTerrain3D();
 	}
-	public void setTerrain(TriangleMesh mesh){
-        PhongMaterial   material    = new PhongMaterial();
-        material.setDiffuseColor( Color.web( "#00FF00" ) );
-        material.setSpecularColor( Color.GREEN );
-        meshView.setDrawMode( DrawMode.LINE );
-        meshView.setMesh( mesh );
-        meshView.setMaterial( material );
-        meshView.setCullFace(CullFace.NONE);
-        para.root.getChildren().addAll(meshView);
+	public void setTerrain3D(){	
+        para.root.getChildren().addAll(terrain);
 	}
 }
