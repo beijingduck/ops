@@ -10,6 +10,9 @@ public class Control {
 	public Road road;
 	public Open open;
 	public OASBIS bis;
+	public SID sid;
+	public OAS oas;
+	public APVOAS apvoas;
 	public Stage stage;
 	public Scene scene;
 	public Pane pane;
@@ -25,12 +28,18 @@ public class Control {
 		
 		bis = new OASBIS(para,pane);
 		bis.setOASBIS();
-				
-		scene = new Scene(pane,200,100);
+		sid = new SID(para,pane);
+		oas = new OAS(para,pane);
+		apvoas = new APVOAS(para,pane);
+		
+		scene = new Scene(pane,200,80);
 		stage = new Stage();
 		stage.setTitle("control");
 		stage.setScene(scene);
 		stage.setAlwaysOnTop(true);		
 		stage.show();
+		stage.setX(0);
+		stage.setY(0);
+				
 	}
 }

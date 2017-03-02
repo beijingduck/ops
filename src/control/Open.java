@@ -17,7 +17,7 @@ import ops.SurfaceMaker;
 public class Open {
 	public Parameter para;
 	public Pane pane;
-	public Button btn,btn2;
+	public Button btn;
 	public SurfaceMaker sm;
 	public Open(Parameter para,Pane pane){
 		this.para = para;
@@ -26,7 +26,6 @@ public class Open {
 	}
 	public void setOpen(){
 		setRoadButton();
-		
 	}
 	public void setRoadButton(){
 		btn = new Button("OPEN");
@@ -35,16 +34,6 @@ public class Open {
 		btn.setOnAction((e) -> {
 			openFile();
 			
-		});
-		btn2 = new Button("3D");
-		pane.getChildren().add(btn2);
-		btn2.setLayoutY(50);
-		btn2.setOnAction((e) -> {
-			if(para.obj.trn.terrain.isVisible()){
-				para.obj.trn.terrain.setVisible(false);
-			}else{
-				para.obj.trn.terrain.setVisible(true);	
-			}					
 		});
 	}
 	public void openFile(){

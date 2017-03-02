@@ -41,6 +41,7 @@ public class Start extends Application {
 
 	public void start(Stage stage) throws Exception {
 		para = new Parameter(stage);
+		stage.setTitle("parodes");
 	}
 
 	public void setBackGround() {

@@ -220,4 +220,15 @@ public class Calculation {
 		//座標系のX軸は、原点において子午線に一致する軸とし真北に向かう値を正とし、座標系のY軸は、座標系原点において座標系のX軸に直交する軸とし真東に向かう値を正とする。
 		return XY;
 	}
+	public double getDeltaH(double T,double hFAP,double hTHR){
+		double h;
+		double Tstd = T-15;
+		double L0 = -0.0065;
+		double T0 = 288.15;
+		//System.out.println(-(Tstd/L0)*Math.log(1+L0*hFAP/(T0+L0*hTHR)));
+		//System.out.println(-(Tstd/L0)*Math.log(1+L0*hFAP/(T0+L0*hTHR)));
+		
+		h = -(Tstd/L0)*Math.log(1+L0*hFAP/(T0+L0*hTHR));
+		return h;		
+	}
 }
